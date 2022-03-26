@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)https://onetag-sys.com/usync/?cb=1647799868299&us_privacy=1-%2D- -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Sync Pixels</title>
+</head>
+<body marginwidth="0" marginheight="0">
+
+<script>
+
+    var syncPixels = "https://pixel.rubiconproject.com/tap.php?v=223352&nid=4584&put=pdOx8cOOyxNwIeLtS__abcIil7uJ7gJ_aZ5-p4wuphs";
+    var syncIframes = "";
+
+    var GDPR_APPLIES = "gdpr=";
+    var GDPR = "gdpr_consent=";
+    var US_PRIVACY = "us_privacy=";
+
+
+    var params = location.search.substring(1);
+    var consentString = "";
+    var usPrivacy = "";
+    var gdprAppliesValue = "1";
+
+    try {
+
+        var index = params.indexOf(GDPR);
+        if (index >= 0) {
+            consentString = params.substring(index + GDPR.length).split("&")[0];
+        }
+
+        index = params.indexOf(GDPR_APPLIES);
+        if (index >= 0) {
+            var tmp = params.substring(index + GDPR_APPLIES.length).split("&")[0];
+            gdprAppliesValue = (tmp == null || tmp === "" || tmp === "1") ? "1" : "0";
+        }
+
+        index = params.indexOf(US_PRIVACY);
+        if (index >= 0) {
+            usPrivacy = params.substring(index + US_PRIVACY.length).split("&")[0];
+        }
+
+    } catch (e) {
+        console.log("Can't detect gdpr consent string");
+    }
+
+    if (syncPixels) {
+
+        var sync = syncPixels.split(" ");
+        if (sync != null) {
+            sync.forEach(function(url) {
+
+                url = url.replace("${GDPR}",gdprAppliesValue);
+                url = url.replace("${GDPR_STRING}", consentString);
+                url = url.replace("${US_PRIVACY}", usPrivacy);
+
+                new Image().src = url;
+
+            });
+        }
+    }
+
+    if (syncIframes) {
+
+        var syncF = syncIframes.split(",");
+        if (syncF != null) {
+            syncF.forEach(function(url) {
+
+                url = url.replace("${GDPR}",gdprAppliesValue);
+                url = url.replace("${GDPR_STRING}", consentString);
+                url = url.replace("${US_PRIVACY}", usPrivacy);
+
+                var iframe = document.createElement("iframe");
+                iframe.src = url;
+                iframe.style.display = "none";
+                iframe.style.width = "0px";
+                iframe.style.height = "0px";
+                document.body.appendChild(iframe);
+
+            });
+        }
+    }
+
+</script>
+
+
+<div id="mouseposition-extension-element-full-container" style="position: fixed; inset: 0px; pointer-events: none; z-index: 2147483647; font-weight: 400;"><div id="mouseposition-extension-element-rect-display" style="display: none; position: absolute; background: rgba(255, 255, 255, 0.7); outline: black solid 1px; font-size: 12px; z-index: 2147483647; justify-content: center; align-items: center; user-select: none; cursor: default; color: rgb(0, 0, 0); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; width: 0px; height: 0px;"><pre style="flex: 1 1 0%; text-align: center; background-color: rgba(255, 255, 255, 0.7); color: rgb(0, 0, 0); min-width: 42px; min-height: 12px; transition: all 1s ease 0s;"></pre></div><pre id="mouseposition-extension-element-coordinate-display" style="position: absolute; display: none; background: rgb(255, 255, 255); font-size: 12px; line-height: 14px; border-radius: 3px; border-width: 1px; border-color: rgb(34, 34, 34) black rgb(51, 51, 51); border-style: solid; padding: 3px; z-index: 2147483647; color: rgb(34, 34, 34); user-select: none; cursor: default; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"></pre></div></body></html>
