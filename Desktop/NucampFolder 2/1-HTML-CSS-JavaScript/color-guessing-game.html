@@ -16,17 +16,20 @@
         const targetIndex = Math.floor(Math.random() * COLORS_ARRAY.length);
         const target = COLORS_ARRAY[targetIndex];
         console.log(target)
+        let numTries=0;
 
         do {
-            guess = prompt('I am thinking of one of these colors:\n\n' + COLORS_ARRAY +
+            guess = prompt('I am thinking of one of these colors:\n\n' + COLORS_ARRAY.join(", ") +
 '\n\nWhat color am I thinking of?\n')
 if (guess=== null) {
         return;
     }
+    numTries += 1;
     correct = checkGuess(guess, target)
         } while (!correct)
 
-    alert('Congratulations! You got it!')
+    alert('Congratulations! You got it!\n\n It took you ' + numTries +' tries.  Press "OK" to turn the screen this color.')
+    document.body.style.background = guess
 
     }
 
